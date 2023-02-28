@@ -82,6 +82,7 @@ const (
 
 func (m MemoryDeviceType) String() string {
 	types := [...]string{
+		"",
 		"Other",
 		"Unknown",
 		"DRAM",
@@ -112,8 +113,17 @@ func (m MemoryDeviceType) String() string {
 		"LPDDR2",
 		"LPDDR3",
 		"LPDDR4",
+		"Logical non-volatile device",
+		"HBM (High Bandwidth Memory)",
+		"HBM2 (High Bandwidth Memory Generation 2)",
+		"DDR5",
+		"LPDDR5",
+		"HBM3 (High Bandwidth Memory Generation 3)",
 	}
-	return types[m-1]
+	if len(types) <= int(m) {
+		return "Unknown"
+	}
+	return types[m]
 }
 
 type MemoryDeviceTypeDetail uint16
